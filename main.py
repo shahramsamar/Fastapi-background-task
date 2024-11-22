@@ -14,3 +14,16 @@ async def test_sleep():
     return {"detail": "done"}
 
 
+""" this is a simple async implementation"""
+
+def trigger_process():
+    print("Process triggered")
+    sleep(10)
+    print("Process finished")
+    
+
+@app.get("/async")
+async def test_async():
+    task =threading.Thread(target=trigger_process)
+    task.start()
+    return {"detail": "done"}
